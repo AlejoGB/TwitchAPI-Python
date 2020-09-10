@@ -9,12 +9,15 @@ dev/
 logs/
 .vscode/
 clientID.txt
+test.py
+test_*
+*_test.py
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-
+.pytest_cache
 #docker
 docker-compose.yml
 dockerfile
