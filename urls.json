@@ -1,0 +1,7 @@
+{
+    "games": {
+        "top": "https://api.twitch.tv/helix/games/top"
+
+      }      
+  
+}
