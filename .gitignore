@@ -10,6 +10,7 @@ logs/
 .vscode/
 clientID.txt
 test.py
+twitch-analytics-key.json
 #test_*
 #*_test.py
 ### Python ###
