@@ -1,7 +1,7 @@
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,visualstudiocode
-.flake8
+
 dockerfile
 docker-compose.yml
 twitchvenv/
@@ -9,9 +9,9 @@ dev/
 logs/
 .vscode/
 clientID.txt
-test.py
-test_*
-*_test.py
+#test.py
+#test_*
+#*_test.py
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
