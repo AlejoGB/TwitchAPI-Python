@@ -32,7 +32,21 @@ def test_get_top_games():
     )
     tkn = req.get_tkn()    
     resp = req.top(tkn.json())
-    print(resp.json())
+    #print(resp.json())
+    assert resp.status_code == HTTP_STATUS_SUCCESS
+
+def test_get_top_games_params():
+    with open('client_data.json') as f:
+        client_data = json.load(f)
+    req = Games(
+        client_data = client_data,
+        verbose=True,
+        log=True,
+        logger='INFO'
+    )
+    tkn = req.get_tkn()    
+    resp = req.top(tkn.json(), q='first=100') #first , after , before (pagination)
+    #print(resp.json())
     assert resp.status_code == HTTP_STATUS_SUCCESS
 
 
