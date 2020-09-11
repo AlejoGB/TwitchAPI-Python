@@ -62,7 +62,7 @@ class TwitchAPI:
                         'Client-ID': self.client_data['client_id'],
                         'Authorization': tkn['token_type'].capitalize() + " " + tkn['access_token']},
                         )
-                print(response.url)
+                
             except Exception as e:
                 self.print('Request stopped by an exception: {}'.format(e))
                 logging.error('Request stopped by an exception: {}'.format(e))
@@ -92,8 +92,6 @@ class TwitchAPI:
         #     return False
 
         # return json_data
-        print(response.content)
-        print(response.status_code)
         return response
 
 

@@ -40,7 +40,7 @@ def test_get_top_games_params():
         client_data = json.load(f)
     req = Games(
         client_data = client_data,
-        verbose=True,
+        verbose=False,
         log=True,
         logger='INFO'
     )

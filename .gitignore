@@ -9,7 +9,7 @@ dev/
 logs/
 .vscode/
 clientID.txt
-#test.py
+test.py
 #test_*
 #*_test.py
 ### Python ###
