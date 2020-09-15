@@ -23,7 +23,9 @@ dockerfile
 # C extensions
 *.so
 web/*
-tests/*
+tests/client_data.json
+tests/.pytest*
+tests/__pycache__
 # Distribution / packaging
 .Python
 build/
