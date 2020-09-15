@@ -47,16 +47,15 @@ class TwitchAPI:
             
 
     def make_request(self, url, tkn, *args, **kwargs):
-        params = False
-        if kwargs.get('top'):
-            params = kwargs.get('top')
+        ''' kwargs = keword de parametros de query en url'''
+
         self.print('Requesting from > {}'.format(url))
         logging.info('Requesting from > {}'.format(url))
-        if params:
+        if kwargs.get('param'):
             try:
                 response = requests.get(
                     url=url,
-                    params=params,
+                    params=kwargs.get('param'),
                     timeout=self.timeout,
                     headers={
                         'Client-ID': self.client_data['client_id'],
@@ -100,12 +99,36 @@ class Games(TwitchAPI):
 #        super().__init__(client_data, verbose=False, log=False, timeout=10,*args, **kwargs)
 
     def top(self, tkn, *args, **kwargs):
-        response = self.make_request(self.urls['games']['top'], tkn, top=kwargs.get('q'))
+        ''' kwargs:
+        q='first=100'
+        after before first (pagination)
+        https://dev.twitch.tv/docs/api/reference#get-top-games'''
+
+        response = self.make_request(self.urls['games']['top'], tkn, params=kwargs.get('q'))
         if response:
             return response
         else:
             logging.error('No data retrieved from TOP GAMES request')
             raise Exception('No data retrieved from request')
+
+
+    def detail(self, tkn, *args, **kwargs):
+        ''' kwargs:
+        id = interger (game id)
+        name = string (game name)   '''
+        if kwargs.get('id'):
+            param = 'id='+str(kwargs.get('id'))
+        if kwargs.get('name'):
+            param = 'name='+kwargs.get('name')
+        
+        response = self.make_request(self.urls['games']['detail'], tkn, param=param)
+        if response:
+            return response
+        else:
+            logging.error('No data retrieved from TOP GAMES request')
+            raise Exception('No data retrieved from request')
+
+        
 
             
     
