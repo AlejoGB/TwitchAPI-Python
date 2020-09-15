@@ -5,7 +5,8 @@
         "detail": "https://api.twitch.tv/helix/games"
       },
     "channels": {
-        "search": "https://api.twitch.tv/helix/search/channels"
+        "search": "https://api.twitch.tv/helix/search/channels",
+        "get_streams": "https://api.twitch.tv/helix/streams"
     }
   
 }

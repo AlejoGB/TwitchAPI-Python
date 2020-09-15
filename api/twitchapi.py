@@ -148,6 +148,7 @@ class Channels(TwitchAPI):
         after first (pagination)
         https://dev.twitch.tv/docs/api/reference#search-channels'''
         # TODO: agregar que el kwarg search pueda ser mas de una palabra
+        # TODO: LIVE_ONLY NOT WORKING
         if kwargs.get('search'):
             param = 'query=' + kwargs.get('search')
             if kwargs.get('live_only'):
@@ -160,4 +161,33 @@ class Channels(TwitchAPI):
         else:
             logging.error('No data retrieved from TOP GAMES request')
             raise Exception('No data retrieved from request')
-    
+
+
+    def get_streams(self, tkn, *args, **kwargs):
+        ''' kwargs:
+        game_id = string ( string of game id's)
+        language = string (string of languages)
+        user_id = string (string of users id's)
+        user_login = string (string of user login names)
+        q='first=100'
+        after before first (pagination)         '''
+        # TODO: Params working but they are certain kw, like not 'english' but 'en'
+        param = ''
+        if kwargs.get('game_id'):
+            param = 'game_id=' + str(kwargs.get('game_id'))
+        if kwargs.get('language'):
+            param = 'language=' + kwargs.get('language')
+        if kwargs.get('user_id'):
+            param = 'user_id' + str(kwargs.get('user_id'))
+        if kwargs.get('user_login'):
+            param = 'user_id=' + kwargs.get('user_login')
+        if kwargs.get('q'):
+            param = param + kwargs.get('q')
+
+        response = self.make_request(self.urls['channels']['get_streams'], tkn, param=param)
+        if response:
+            return response
+        else:
+            logging.error('No data retrieved from TOP GAMES request')
+            raise Exception('No data retrieved from request')
+        
