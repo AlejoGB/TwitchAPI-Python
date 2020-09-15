@@ -7,5 +7,4 @@ install:
 
 
 script: 
-  - cd tests
-  - pytest
+  - cd tests && pytest
