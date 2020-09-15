@@ -3,6 +3,9 @@
     "games": {
         "top": "https://api.twitch.tv/helix/games/top",
         "detail": "https://api.twitch.tv/helix/games"
-      }      
+      },
+    "channels": {
+        "search": "https://api.twitch.tv/helix/search/channels"
+    }
   
 }

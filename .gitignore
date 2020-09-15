@@ -22,7 +22,8 @@ docker-compose.yml
 dockerfile
 # C extensions
 *.so
-
+web/*
+tests/*
 # Distribution / packaging
 .Python
 build/

@@ -2,14 +2,21 @@ import requests
 import logging
 from datetime import datetime
 import json
+from pathlib import Path
+import urllib.parse
 
-# TODO: los metodos y clases tienen que devolver resp , resp.status_code
+
+# TODO: output should be: resp , resp.status_code
+
+URLS_PATH = str(Path(__file__).parent) + '/urls.json'
+
+
 
 class TwitchAPI:
     def __init__(self, client_data, verbose=False, log=False, timeout=10,*args, **kwargs):
         self.client_data = client_data
         self.timeout = timeout
-        self.urls = self.get_urls('urls.json')# endpoints
+        self.urls = self.get_urls(URLS_PATH)# endpoints
         self.verbose = verbose
         if log:
             self.log = 'logging.'+ kwargs.get('logger','error').upper() # INFO DEBUG WARNING ERROR CRITICAL
@@ -129,6 +136,28 @@ class Games(TwitchAPI):
             raise Exception('No data retrieved from request')
 
         
+class Channels(TwitchAPI):
+#    def __init__(self, client_data, verbose=False, log=False, timeout=10,*args, **kwargs):
+#        super().__init__(client_data, verbose=False, log=False, timeout=10,*args, **kwargs)
 
-            
+    def search(self, tkn, *args, **kwargs):
+        ''' kwargs:
+        name ='FollowGrubby'
+        live_only=True
+        q='first=100'
+        after first (pagination)
+        https://dev.twitch.tv/docs/api/reference#search-channels'''
+        # TODO: agregar que el kwarg search pueda ser mas de una palabra
+        if kwargs.get('search'):
+            param = 'query=' + kwargs.get('search')
+            if kwargs.get('live_only'):
+                param = param + '&live_only=' + str(kwargs.get('live_only'))
+            if kwargs.get('q'):
+                param = param + '&' + kwargs.get('q')
+        response = self.make_request(self.urls['channels']['search'], tkn, param=param)
+        if response:
+            return response
+        else:
+            logging.error('No data retrieved from TOP GAMES request')
+            raise Exception('No data retrieved from request')
     
